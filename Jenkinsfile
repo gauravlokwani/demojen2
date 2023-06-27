@@ -23,10 +23,10 @@ pipeline {
      stage('Docker Build and Push') {
       steps {
           withCredentials([string(credentialsId: 'dockerpassglokwani', variable: 'DOCKER_HUB_PASSWORD')]) {
-              sh 'sudo docker login -u hrefnhaila -p $DOCKER_HUB_PASSWORD'
+              sh 'sudo docker login -u glokwani2 -p $DOCKER_HUB_PASSWORD'
               sh 'printenv'
-              sh 'sudo docker build -t hrefnhaila/devops-app:""$GIT_COMMIT"" .'
-              sh 'sudo docker push hrefnhaila/devops-app:""$GIT_COMMIT""'
+              sh 'sudo docker build -t glokwani2/devops-app:""$GIT_COMMIT"" .'
+              sh 'sudo docker push glokwani2/devops-app:""$GIT_COMMIT""'
           }
         
       }
