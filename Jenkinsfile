@@ -22,10 +22,12 @@ pipeline {
         }
      stage('Docker Build and Push') {
       steps {
-
-          sh 'printenv'
+          docker.withRegistry('https://registry.example.com',credentialsId: 'dockerglokwani'){
+            sh 'printenv'
           sh 'sudo docker build -t glokwani2/numeric-app:""$GIT_COMMIT"" .'
           sh 'docker push glokwani2/numeric-app:""$GIT_COMMIT""'
+          }
+          
 
       }
     }
