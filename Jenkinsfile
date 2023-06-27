@@ -22,13 +22,13 @@ pipeline {
         }
      stage('Docker Build and Push') {
       steps {
-          docker.withRegistry('https://registry.example.com',credentialsId: 'dockerglokwani'){
-            sh 'printenv'
-          sh 'sudo docker build -t glokwani2/numeric-app:""$GIT_COMMIT"" .'
-          sh 'docker push glokwani2/numeric-app:""$GIT_COMMIT""'
+          withCredentials([string(credentialsId: 'dockerpassglokwani', variable: 'DOCKER_HUB_PASSWORD')]) {
+              sh 'sudo docker login -u hrefnhaila -p $DOCKER_HUB_PASSWORD'
+              sh 'printenv'
+              sh 'sudo docker build -t hrefnhaila/devops-app:""$GIT_COMMIT"" .'
+              sh 'sudo docker push hrefnhaila/devops-app:""$GIT_COMMIT""'
           }
-          
-
+        
       }
     }
     }
