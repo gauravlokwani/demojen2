@@ -44,8 +44,8 @@ pipeline {
            steps {
 
  
-withCredentials([string(credentialsId: 'token-sonar-glokwani', variable: 'TOKEN-SONAR')]) {
-            sh "mvn clean verify sonar:sonar -Dsonar.projectKey=myproject -Dsonar.projectName='myproject'-Dsonar.host.url=http://demo-test2.eastus.cloudapp.azure.com:9010 -Dsonar.token=$TOKEN-SONAR"
+withCredentials([string(credentialsId: 'token-sonar-glokwani', variable: 'TOKEN_SONAR')]) {
+            sh "mvn clean verify sonar:sonar -Dsonar.projectKey=myproject -Dsonar.projectName=myproject -Dsonar.host.url=http://demo-test2.eastus.cloudapp.azure.com:9010 -Dsonar.token=$TOKEN_SONAR"
          }
  
       
