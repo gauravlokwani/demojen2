@@ -39,6 +39,20 @@ pipeline {
        }
 
     }
+    stage('SonarQube - SAST') {
+
+           steps {
+
+ 
+withCredentials([string(credentialsId: 'token-sonar-glokwani', variable: 'TOKEN-SONAR')]) {
+            sh "mvn clean verify sonar:sonar -Dsonar.projectKey=myproject -Dsonar.projectName='myproject'-Dsonar.host.url=http://demo-test2.eastus.cloudapp.azure.com:9010 -Dsonar.token=$TOKEN-SONAR"
+         }
+ 
+      
+       }
+
+
+     }
      stage('Docker Build and Push') {
       steps {
           withCredentials([string(credentialsId: 'dockerpassglokwani', variable: 'DOCKER_HUB_PASSWORD')]) {
