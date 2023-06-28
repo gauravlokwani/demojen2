@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: devsecops
-  name: devsecops
+  name: devsecops-glokwani
 spec:
   replicas: 2
   selector:
@@ -24,7 +24,7 @@ kind: Service
 metadata:
   labels:
     app: devsecops
-  name: devsecops-svc
+  name: devsecops-glokwani-svc
 spec:
   ports:
   - port: 8080
