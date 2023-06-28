@@ -25,8 +25,8 @@ pipeline {
           withCredentials([string(credentialsId: 'dockerpassglokwani', variable: 'DOCKER_HUB_PASSWORD')]) {
               sh 'sudo docker login -u glokwani2 -p $DOCKER_HUB_PASSWORD'
               sh 'printenv'
-              sh 'sudo docker build -t glokwani2/devops-app:""$GIT_COMMIT"" .'
-              sh 'sudo docker push glokwani2/devops-app:""$GIT_COMMIT""'
+              sh 'sudo docker build -t glokwani2/devops-app-glokwani:""$GIT_COMMIT"" .'
+              sh 'sudo docker push glokwani2/devops-app-glokwani:""$GIT_COMMIT""'
           }
         
       }
@@ -35,7 +35,7 @@ pipeline {
     stage('Deployment Kubernetes  ') {
       steps {
         withKubeConfig([credentialsId: 'kubeconfig']) {
-               sh "sed -i 's#replace#glokwani2/devops-app:${GIT_COMMIT}#g' k8s_deployment_service.yaml"
+               sh "sed -i 's#replace#glokwani2/devops-app-glokwani:${GIT_COMMIT}#g' k8s_deployment_service.yaml"
                sh "kubectl apply -f k8s_deployment_service.yaml"
              }
       }
